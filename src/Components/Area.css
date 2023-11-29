@@ -1,0 +1,73 @@
+/* .board {
+  outline: 2px solid rgb(134, 154, 189);
+   */
+  /* box-shadow: rgba(243, 239, 239, 0.842) 1px 5px 15px; */
+  /* box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+
+.row {
+  height: 35px;
+  
+}
+
+.cell {
+
+  width: 35px;
+  height: 35px;
+ 
+ 
+  /* outline: 1px solid rgb(134, 154, 189); */
+  /* display: inline-block;
+}
+
+.cell-green {
+  
+  border-radius: 17%;
+  height: 28px;
+  width: 28px;
+  background-color: rgb(1, 55, 126);
+}
+
+.cell-red {
+ 
+  height: 15px;
+  width: 15px;
+  border-radius: 50%;
+  background-color: red;
+}
+
+.cell-purple {
+  background-color: purple;
+} */ 
+
+
+
+.board {
+  outline: 2px solid rgb(133, 103, 182);
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+
+.row {
+  height: 35px;
+}
+
+.cell {
+  width: 35px;
+  height: 35px;
+  /* outline: 1px solid rgb(134, 154, 189); */
+  display: inline-block;
+}
+
+.cell-green {
+  border-radius: 30%;
+  background-color: rgb(146, 168, 7);
+}
+
+.cell-red {
+  border-radius: 80%;
+  background-color: rgb(3, 109, 106);
+}
+
+.cell-purple {
+  background-color: rgb(6, 0, 128);
+}
