@@ -56,15 +56,13 @@ const getStartingSnakeLLValue = (board) => {
   };
 };
 
-
-
 const Area = () => {
-  //  const[palyPause, setplayPause] = useState()
-  const[gameState, setgameState] = useState("Play")
-  const[gameStart, setgameStart] = useState(false)
-  const [gameover] = useSound(sound1)
-  const [eat] = useSound(sound2)
-  
+  const [playPause, setPlayPause] = useState(false);
+  const [gameState, setGameState] = useState("Play");
+
+  const [gameover] = useSound(sound1);
+  const [eat] = useSound(sound2);
+
   const [score, setScore] = useState(0);
   const [board, setBoard] = useState(createBoard(BOARD_SIZE));
   const [snake, setSnake] = useState(
@@ -85,13 +83,32 @@ const Area = () => {
     });
   }, []);
 
+  var check = false;
+
+  const handliClick = () => {
+    setPlayPause(!playPause);
+    check = playPause;
+
+    if (gameState === "Play") {
+      setGameState("Pause");
+    } else {
+      setGameState("Play");
+    }
+  };
+
+  
+     
+        useInterval(() => {
+         playPause && moveSnake();
+        }, 220);
+    
+  
+
+  // play();
+
   // `useInterval` is needed; you can't naively do `setInterval` in the
   // `useEffect` above. See the article linked above the `useInterval`
   // definition for details.
- {gameStart &&
-   useInterval(() => {
-     moveSnake();
-   }, 220);}
 
   const handleKeydown = (e) => {
     const newDirection = getDirectionFromKey(e.key);
@@ -143,7 +160,7 @@ const Area = () => {
     const foodConsumed = nextHeadCell === foodCell;
     if (foodConsumed) {
       // This function mutates newSnakeCells.
-      // eat()
+      eat()
       growSnake(newSnakeCells);
       // if (foodShouldReverseDirection) reverseSnake();
       handleFoodConsumption(newSnakeCells);
@@ -177,8 +194,8 @@ const Area = () => {
   //   const newDirection = getOppositeDirection(tailNextNodeDirection);
   //   setDirection(newDirection);
 
-    // The tail of the snake is really the head of the linked list, which
-    // is why we have to pass the snake's tail to `reverseLinkedList`.
+  // The tail of the snake is really the head of the linked list, which
+  // is why we have to pass the snake's tail to `reverseLinkedList`.
   //   reverseLinkedList(snake.tail);
   //   const snakeHead = snake.head;
   //   snake.head = snake.tail;
@@ -204,7 +221,7 @@ const Area = () => {
 
     setFoodCell(nextFoodCell);
     // setFoodShouldReverseDirection(nextFoodShouldReverseDirection);
-    setScore(score + 1);
+    setScore(() => score + 1);
   };
 
   const handleGameOver = () => {
@@ -214,13 +231,31 @@ const Area = () => {
     setFoodCell(snakeLLStartingValue.cell + 5);
     setSnakeCells(new Set([snakeLLStartingValue.cell]));
     setDirection(Direction.RIGHT);
-    // gameover()
+    gameover()
+    if (localStorage.getItem("highscore") < score) {
+      localStorage.setItem("highscore", score);
+    }
   };
 
   return (
     <>
-      <button onClick={()=>{setgameStart(!gameStart); setgameState("Pause")} }>{gameState}</button>
-      <h1>Score: {score}</h1>
+     
+      <button
+        onClick={handliClick}
+        style={{
+          cursor: "pointer",
+          height: "36px",
+          width: "100px",
+          fontSize: "20px",
+          borderRadius: "10px",
+        }}
+      >
+        <b> {gameState}</b>
+      </button>
+      <h2>
+        Score: {score} | High Score: {localStorage.getItem("highscore")}
+      </h2>
+
       <div className="board">
         {board.map((row, rowIdx) => (
           <div key={rowIdx} className="row">
