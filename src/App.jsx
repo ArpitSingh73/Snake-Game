@@ -4,7 +4,7 @@ import "./App.css";
 
 const App = () => (
   <div className="App">
-    {alert("Game is not developed keeping small devices in mind. It will for sure ill-perform.")}
+    {alert("Better to check on PC & Desktops as game is not developed keeping small devices in mind. It will for sure ill-perform!")}
     <Board></Board>
   </div>
 );
