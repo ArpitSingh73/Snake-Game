@@ -248,6 +248,7 @@ const Area = () => {
           width: "100px",
           fontSize: "20px",
           borderRadius: "10px",
+          backgroundColor:"lime"
         }}
       >
         <b> {gameState}</b>
